@@ -1,5 +1,5 @@
 
-# **Commands-used*
+Commands-used
 
 # MariaDB Installation
 sudo yum install -y mariadb-server
