@@ -1,0 +1,32 @@
+
+# **Commands-used*
+
+# MariaDB Installation
+sudo yum install -y mariadb-server
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo mysql
+
+# MariaDB Setup
+CREATE DATABASE ecomdb;
+CREATE USER 'ecomuser'@'localhost' IDENTIFIED BY 'ecompassword';
+GRANT ALL PRIVILEGES ON *.* TO 'ecomuser'@'localhost';
+FLUSH PRIVILEGES;
+
+# Apache + PHP Installation
+sudo yum install -y httpd php php-mysqlnd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+# Deploy Application
+sudo git clone https://github.com/kodekloudhub/learning-app-ecommerce.git /var/www/html
+
+# Update index.php database IP
+sudo sed -i 's/172.20.1.101/localhost/g' /var/www/html/index.php
+
+# Restart Services
+sudo systemctl restart httpd
+
+# Extra Commands
+git --version
+sudo sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
